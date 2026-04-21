@@ -1,0 +1,11 @@
+{% for game in games %}
+    <div class="history-item">
+        <strong>ПОБЕДА!</strong><br>
+        {{ game.choice }} ({{ game.bet }} ₽) -> Выпало: {{ game.result }}<br>
+        Выигрыш: +{{ game.profit }} ₽
+    </div>
+{% else %}
+    <div style="color: #666; text-align: center; margin-top: 20px;">
+        История побед пока пуста. Крутите рулетку!
+    </div>
+{% endfor %}

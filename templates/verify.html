@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html><head><title>Подтверждение</title><style>body{background:#0a0a0a; color:white; font-family:sans-serif; display:flex; justify-content:center; align-items:center; height:100vh;} .box{background:#161616; padding:30px; border-radius:10px; border:1px solid #00ff88;} input, button{width:100%; padding:10px; margin:5px 0;}</style></head>
+<body>
+    <div class="box">
+        <h2>Подтверждение почты</h2>
+        <p>Код отправлен на: {{ email }}</p>
+        <p style="color:yellow; font-size:0.8rem;">(СИМУЛЯЦИЯ: Посмотри код в консоли терминала Python!)</p>
+        <form method="POST"><input type="text" name="code" placeholder="Введите 4 цифры" required><button type="submit" style="background:#00ff88; font-weight:bold; cursor:pointer;">ПОДТВЕРДИТЬ</button></form>
+    </div>
+</body></html>

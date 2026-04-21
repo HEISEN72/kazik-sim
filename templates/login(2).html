@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход / Регистрация - ELBERT_AHMET</title>
+    <style>
+        body { background: #0a0a0a; color: #fff; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: #161616; padding: 30px; border-radius: 10px; border: 1px solid #333; width: 350px; }
+        h2 { color: gold; text-align: center; margin-top: 0; }
+        label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #bbb; }
+        input { width: 100%; padding: 10px; margin-bottom: 15px; background: #222; border: 1px solid #444; color: #fff; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #00ff88; color: #000; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:disabled { background: #444; color: #888; cursor: not-allowed; }
+        button:hover:not(:disabled) { background: #00cc6e; }
+        .toggle-link { text-align: center; margin-top: 15px; font-size: 0.8rem; color: #888; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="login-box">
+    <h2>Вход</h2>
+    <form method="POST" onsubmit="disableBtn(this)">
+        <input type="hidden" name="action" value="login">
+        <label>Никнейм:</label>
+        <input type="text" name="username" required>
+        <label>Пароль:</label>
+        <input type="password" name="password" required>
+        <button type="submit">Войти</button>
+    </form>
+    <div class="toggle-link" onclick="toggleForm()">Нет аккаунта? Регистрация</div>
+</div>
+
+<div class="container" id="register-box" style="display: none;">
+    <h2>Регистрация</h2>
+    <form method="POST" onsubmit="disableBtn(this)">
+        <input type="hidden" name="action" value="register">
+
+        <label>Никнейм:</label>
+        <input type="text" name="username" required>
+
+        <div style="margin-bottom: 15px;">
+            <label>Telegram ID:</label>
+            <input type="text" name="email" placeholder="Например: 12345678" required
+                   style="width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 5px;">
+
+            <div style="background: #222; padding: 10px; border-radius: 5px; margin-top: 10px; border-left: 3px solid #00ff88;">
+                <p style="margin: 0; font-size: 0.8rem; color: #aaa;">Чтобы бот смог прислать код:</p>
+                <ol style="margin: 5px 0; font-size: 0.8rem; color: #00ff88; padding-left: 20px;">
+                    <li><a href="https://t.me/{{ bot_username }}" target="_blank" style="color: gold;">Запустите нашего бота</a> (нажмите START)</li>
+                    <li><a href="https://t.me/getmyid_bot" target="_blank" style="color: gold;">Узнайте свой ID здесь</a></li>
+                </ol>
+            </div>
+        </div>
+
+        <label>Пароль:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    <div class="toggle-link" onclick="toggleForm()">Уже есть аккаунт? Войти</div>
+</div>
+
+<script>
+    function toggleForm() {
+        const loginBox = document.getElementById('login-box');
+        const regBox = document.getElementById('register-box');
+        if (loginBox.style.display === 'none') {
+            loginBox.style.display = 'block';
+            regBox.style.display = 'none';
+        } else {
+            loginBox.style.display = 'none';
+            regBox.style.display = 'block';
+        }
+    }
+
+    function disableBtn(form) {
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.innerText = 'ПОДОЖДИТЕ...';
+    }
+</script>
+
+</body>
+</html>
